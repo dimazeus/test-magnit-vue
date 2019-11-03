@@ -1,0 +1,71 @@
+[
+    {
+        "id":"1",
+        "title":"Проектный, Краснодар, Открытие ММ -Ворованный",
+        "service":"СЮР",
+        "format":"ММ",
+        "document":"Более трех документов в работе",
+        "alert":true,
+        "branch":"Краснодар Восток"
+    },
+    {
+        "id":"2",
+        "title":"Проектный, Краснодар, Открытие ММ -Ворованный",
+        "createDate":"15.10.2019",
+        "format":"МК/УМ",
+        "status":"В работе",
+        "alert":false,
+        "branch":"Краснодар Восток",
+        "openDate":"01.01.2020",
+        "transitionToCurrentStatusDate":"02.05.2020",
+        "transitionsCount":"4"
+    },
+    {
+        "id":"3",
+        "title":"Проектный, Краснодар, Открытие ММ -Ворованный",
+        "createDate":"15.10.2019",
+        "format":"МК/УМ",
+        "status":"В работе",
+        "alert":false,
+        "branch":"Краснодар Восток",
+        "openDate":"01.01.2020",
+        "transitionToCurrentStatusDate":"02.05.2020",
+        "transitionsCount":"4"
+    },
+    {
+        "id":"4",
+        "title":"Проектный, Краснодар, Открытие ММ -Ворованный",
+        "createDate":"15.10.2019",
+        "format":"МК/УМ",
+        "status":"В работе",
+        "alert":false,
+        "branch":"Краснодар Восток",
+        "openDate":"01.01.2020",
+        "transitionToCurrentStatusDate":"02.05.2020",
+        "transitionsCount":"4"
+    },
+    {
+        "id":"5",
+        "title":"Проектный, Краснодар, Открытие ММ -Ворованный",
+        "createDate":"15.10.2019",
+        "format":"МК/УМ",
+        "status":"В работе",
+        "alert":false,
+        "branch":"Краснодар Восток",
+        "openDate":"01.01.2020",
+        "transitionToCurrentStatusDate":"02.05.2020",
+        "transitionsCount":"4"
+    },
+    {
+        "id":"6",
+        "title":"Проектный, Краснодар, Открытие ММ -Ворованный",
+        "createDate":"15.10.2019",
+        "format":"МК/УМ",
+        "status":"В работе",
+        "alert":false,
+        "branch":"Краснодар Восток",
+        "openDate":"01.01.2020",
+        "transitionToCurrentStatusDate":"02.05.2020",
+        "transitionsCount":"4"
+    }
+]
