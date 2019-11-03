@@ -1,11 +1,16 @@
 <template>
   <v-row>
     <v-col>
+      <m-filter
+        :filters="filters"
+        v-model="items"
+        :allItems="allItems"
+      />
       <v-expansion-panels
         accordion
       >
         <m-expansion-panel
-          v-for="(doc, i) in items"
+          v-for="(doc, i) in documents"
           :key="i"
         >
           <template v-slot:header>
@@ -17,11 +22,11 @@
         </m-expansion-panel>
       </v-expansion-panels>
       <v-pagination
-        v-model="page"
-        :length="pageCount"
+        v-model="mixinPage"
+        :length="mixinPageCount"
         :total-visible="5"
         circle
-        @input="pageChangeHandler"
+        @input="mixinPageChangeHandler"
       ></v-pagination>
     </v-col>
   </v-row>
@@ -31,48 +36,49 @@
 import MExpansionPanel from "@/components/MExpansionPanel"
 import DocListHeader from "@/components/panelData/DocListHeader"
 import DocListContent from "@/components/panelData/DocListContent"
-const chunk = (arr, chunkSize = 1) => {
-  const cache = [];
-  const tmp = arr.slice();
-  if (chunkSize <= 0) return cache;
-  while (tmp.length) cache.push(tmp.splice(0, chunkSize));
-  return cache;
-}
+import MFilter from "@/components/MFilter"
+import paginationMixin from "@/mixins/pagination.mixin"
 export default {
+  mixins: [paginationMixin],
   components:{
     MExpansionPanel,
     DocListHeader,
-    DocListContent
+    DocListContent,
+    MFilter
   },
   data(){
     return{
-      page: +this.$route.query.page || 1,
-      pageSize: 5,
-      pageCount: 0,
+      currentItems: [],
+
+      filters: [
+        {label: 'Филиал', type: 'auto', equals: (obj, value) => {
+          if(typeof obj.branch == "undefined") return false
+          return value == '' || obj.branch.toLowerCase().indexOf(value.toLowerCase()) != -1 }
+        },
+        {label: 'Документ', type: 'text', equals: (obj, value) => {
+          if(typeof obj.document == "undefined") return false
+          return value == '' || obj.document.toLowerCase().indexOf(value.toLowerCase()) != -1 }
+        },
+        {label: 'Дата открытия', type: 'date', equals: (obj, value) => {
+          if(typeof obj.openDate == "undefined") return false
+          return value == '' || obj.openDate.toLowerCase().indexOf(value.toLowerCase()) != -1 }
+        }
+      ],
       allItems: [],
       items: []
     }
   },
   computed:{
-      documents: () => {
-          this.$store.dispatch("documents/getAllDocuments")
+      documents() {
+        this.mixinSetupPagination(this.items)
+        return this.currentItems
       }
 
   },
-  methods: {
-    setupPagination(allItems) {
-      this.allItems = chunk(allItems, this.pageSize)
-      this.pageCount = this.allItems.length
-      this.items = this.allItems[this.page - 1] || this.allItems[0]
-    },
-    pageChangeHandler(page){
-      this.$router.push(`${this.$route.path}?page=${page}`)
-      this.items = this.allItems[page - 1] || this.allItems[0]
-    }
-  },
   mounted() {
     this.$store.dispatch("documents/loadDocuments")
-    this.setupPagination(this.$store.state.documents.documents)
+    this.items = this.$store.state.documents.documents;
+    this.allItems = this.$store.state.documents.documents;
   }
 }
 </script>
