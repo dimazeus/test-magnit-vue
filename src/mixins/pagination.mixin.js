@@ -21,8 +21,10 @@ export default {
       this.currentItems = this.chankedItems[this.mixinPage - 1] || this.chankedItems[0]
     },
     mixinPageChangeHandler(page){
-      this.$router.push(`${this.$route.path}?page=${page}`)
+      // this.$router.push(`${this.$route.path}?page=${page}`)
+      this.$router.replace(`${this.$route.path}?page=${page}`)
       this.currentItems = this.chankedItems[page - 1] || this.chankedItems[0]
+      window.scrollTo(0,0)
     }
   }
 }

@@ -91,7 +91,6 @@ export default {
     })
     this.$store.dispatch("projects/getHistory", this.$route.params.id).then((res)=>{
       this.history = res.slice();
-      window.console.log(res)
     })
   }
 }

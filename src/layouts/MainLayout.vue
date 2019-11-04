@@ -41,7 +41,10 @@
       clipped-left
       color="primary headerText--text"
     >
-      <v-app-bar-nav-icon color="headerText" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-btn v-if="$route.meta.headerLeftButton == 'back'"  icon color="headerText" @click="$router.go(-1)">
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
+      <v-app-bar-nav-icon v-else color="headerText" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
       <v-toolbar-title>{{$route.meta.title}}</v-toolbar-title>
       <v-spacer></v-spacer>

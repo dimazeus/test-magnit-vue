@@ -23,7 +23,8 @@ const routes = [
     path: '/projectInfo/:id',
     component: () => import(/* webpackChunkName: "ProjectInfo" */ '@/views/projects/ProjectInfo.vue'),
     meta: {
-      title: 'Проекты филиала'
+      title: 'Проекты филиала',
+      headerLeftButton: 'back'
     },
   },
   {
@@ -31,7 +32,8 @@ const routes = [
     path: '/plan/:id',
     component: () => import(/* webpackChunkName: "WorkPlan" */ '@/views/projects/WorkPlan.vue'),
     meta: {
-      title: 'Динамический план'
+      title: 'Динамический план',
+      headerLeftButton: 'back'
     }
   },
   {
@@ -39,7 +41,8 @@ const routes = [
     path: '/history/:id',
     component: () => import(/* webpackChunkName: "HistoryReq" */ '@/views/projects/HistoryReq.vue'),
     meta: {
-      title: 'История заявок'
+      title: 'История заявок',
+      headerLeftButton: 'back'
     }
   },
 
@@ -56,7 +59,8 @@ const routes = [
     path: '/documentPackage/:id',
     component: () => import(/* webpackChunkName: "DocumentPackage" */ '@/views/documents/DocumentPackage.vue'),
     meta: {
-      title: 'Пакет документов'
+      title: 'Пакет документов',
+      headerLeftButton: 'back'
     }
   }
 
