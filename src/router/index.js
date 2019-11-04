@@ -23,7 +23,7 @@ const routes = [
     path: '/projectInfo/:id',
     component: () => import(/* webpackChunkName: "ProjectInfo" */ '@/views/projects/ProjectInfo.vue'),
     meta: {
-      title: 'Сведения о проекте'
+      title: 'Проекты филиала'
     },
   },
   {

@@ -6,9 +6,7 @@
         v-model="items"
         :allItems="allItems"
       />
-      <v-expansion-panels
-        accordion
-      >
+      <v-expansion-panels>
         <m-expansion-panel
           v-for="(doc, i) in documents"
           :key="i"
@@ -56,12 +54,24 @@ export default {
           return value == '' || obj.branch.toLowerCase().indexOf(value.toLowerCase()) != -1 }
         },
         {label: 'Документ', type: 'text', equals: (obj, value) => {
-          if(typeof obj.document == "undefined") return false
-          return value == '' || obj.document.toLowerCase().indexOf(value.toLowerCase()) != -1 }
+          if(typeof obj.title == "undefined") return false
+          return value == '' || obj.title.toLowerCase().indexOf(value.toLowerCase()) != -1 }
         },
         {label: 'Дата открытия', type: 'date', equals: (obj, value) => {
           if(typeof obj.openDate == "undefined") return false
           return value == '' || obj.openDate.toLowerCase().indexOf(value.toLowerCase()) != -1 }
+        },
+        {label: 'Статус', type: 'auto', equals: (obj, value) => {
+          if(typeof obj.status == "undefined") return false
+          return value == '' || obj.status.toLowerCase().indexOf(value.toLowerCase()) != -1 }
+        },
+        {label: 'Проект', type: 'text', equals: (obj, value) => {
+          if(typeof obj.openDate == "undefined") return false
+          return value == '' || obj.openDate.toLowerCase().indexOf(value.toLowerCase()) != -1 }
+        },
+        {label: 'Формат', type: 'auto', equals: (obj, value) => {
+          if(typeof obj.format == "undefined") return false
+          return value == '' || obj.format.toLowerCase().indexOf(value.toLowerCase()) != -1 }
         }
       ],
       allItems: [],

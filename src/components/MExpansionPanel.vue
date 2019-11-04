@@ -1,6 +1,6 @@
-<template> 
+<template>
   <v-expansion-panel
-    :disabled="onlyHeader"
+   :class="{'v-expansion-panel__hide-icon': onlyHeader}"
   >
     <v-expansion-panel-header>
       <slot name="header"></slot>
@@ -21,3 +21,31 @@ export default {
   }
 }
 </script>
+<style scoped>
+.v-expansion-panel {
+  margin-top: 16px;
+  border: 2px solid var(--v-primary-base)
+}
+.v-expansion-panel::before {
+  bottom: auto;
+}
+.v-expansion-panel__hide-icon >>>
+.v-expansion-panel-header__icon {
+  display: none;
+}
+.v-expansion-panel-header {
+  padding-top: 2px;
+  padding-left: 2px;
+  padding-bottom: 2px;
+}
+.v-expansion-panel-content >>> .v-expansion-panel-content__wrap
+{
+  padding-top: 2px;
+  padding-left: 2px;
+  padding-bottom: 2px;
+}
+.v-expansion-panel-content >>> .v-list
+{
+  padding-top: 0;
+}
+</style>

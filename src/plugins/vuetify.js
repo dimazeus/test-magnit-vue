@@ -9,10 +9,14 @@ export default new Vuetify({
   },
   theme: {
     dark: false,
+    options: {
+      customProperties: true,
+    },
     themes: {
       light: {
         primary: "#3EC28F",
-        headerText: "#FFFFFF"
+        headerText: "#FFFFFF",
+        error: "#CF2F2F"
       },
       dark: {
         primary: "black",

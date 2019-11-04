@@ -1,5 +1,5 @@
 <template>
-  <v-list>
+  <v-list dense>
     <m-list-item
       v-if="item.number"
       title="№ Заявки: "
