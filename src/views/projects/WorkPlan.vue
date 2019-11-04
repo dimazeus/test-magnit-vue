@@ -74,7 +74,6 @@ export default {
 
   },
   mounted() {
-    this.$store.dispatch("documents/loadDocuments")
     this.$store.dispatch("projects/getPlan", this.$route.params.id).then((res)=>{
       this.items = res.slice();
       this.allItems = res.slice();

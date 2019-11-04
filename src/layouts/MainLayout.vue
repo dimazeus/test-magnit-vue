@@ -4,7 +4,7 @@
       v-model="drawer"
       app
       clipped
-      bottom
+
     >
 
       <v-list dense>
@@ -76,7 +76,7 @@
         </v-card>
       </v-dialog>
     </v-app-bar>
-    <v-content>
+    <v-content class="mainBackground">
       <v-container>
         <router-view/>
       </v-container>
@@ -94,7 +94,3 @@ export default {
   },
 }
 </script>
-
-<style>
-
-</style>
