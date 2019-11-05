@@ -29,6 +29,21 @@ const actions = {
         const doc = API.getProjects().find((doc) => doc['id'] == id);
         if(!doc || !doc['history'] || !doc['history']['history']) return [];
         return doc['history']['history'];
+    },
+    getHistoryPart(store, {id, part}) {
+        //либо сервер, либо настройки польователя решат, по сколько записей
+        const packageSize = 2;
+        const doc = API.getProjects().find((doc) => doc['id'] == id);
+        if(!doc || !doc['history'] || !doc['history']['history']) return [];
+        const allObj = doc['history']['history'];
+        const startIndex = part * packageSize;
+        const endIndex = (part + 1) * packageSize;
+        //проверяем наличие минимального запрашиваемого индекса
+        // if(part * packageSize > allObj.length - 1) return [];
+        const ret = allObj.slice(startIndex, endIndex);
+        //последняя запись в массиве будет индикатором есть ли еще записи
+        ret.push({more: allObj.length > endIndex ? true : false});
+        return ret;
     }
 }
 

@@ -32,6 +32,12 @@
                 </template>
               </m-expansion-panel>
             </v-expansion-panels>
+             <div class="text-center" v-if="historyMore">
+                <v-btn class="mt-2" small large color="primary" @click="loadOldHistory">
+                    Еще
+                    <v-icon right>mdi-arrow-down</v-icon>
+                </v-btn>
+              </div>
           </v-col>
         </v-row>
       </v-container>
@@ -78,20 +84,32 @@ export default {
     return{
       tab: "tab-history",
       files: [],
-      history: []
+      history: [],
+      historyPart: 0,
+      historyMore: false
     }
-  },
-  computed:{
-
-
   },
   mounted() {
     this.$store.dispatch("projects/getFiles", this.$route.params.id).then((res)=>{
       this.files = res.slice();
     })
-    this.$store.dispatch("projects/getHistory", this.$route.params.id).then((res)=>{
-      this.history = res.slice();
+    // this.$store.dispatch("projects/getHistory", this.$route.params.id).then((res)=>{
+    //   this.history = res.slice();
+    // })
+    this.$store.dispatch("projects/getHistoryPart", {id: this.$route.params.id, part: this.historyPart}).then((res)=>{
+      this.historyMore = res.pop().more;
+      this.history = this.history.concat(res);
+      this.historyPart++;
     })
+  },
+  methods: {
+    loadOldHistory() {
+      this.$store.dispatch("projects/getHistoryPart", {id: this.$route.params.id, part: this.historyPart}).then((res)=>{
+        this.historyMore = res.pop().more;
+        this.history = this.history.concat(res);
+        this.historyPart++;
+      })
+    }
   }
 }
 </script>
